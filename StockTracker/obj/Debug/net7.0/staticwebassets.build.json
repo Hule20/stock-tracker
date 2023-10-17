@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cSZmDV1uWBd4He5EMaa2t1hVvMHDnecmr+C7ezxCAro=",
+  "Source": "StockTracker",
+  "BasePath": "_content/StockTracker",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
