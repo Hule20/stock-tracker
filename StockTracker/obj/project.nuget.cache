@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ReXXLsAeLHE/5BJL21b4VM06XOHyLpZVxyLdB2TC0h0uZ2JKjWltCUYLX59NoamFAfqL9MHfa1gK+Gv8N7unEw==",
+  "dgSpecHash": "Svi+b4lAD4weKyIJBrb9sgAfSQccCtuMjYyMtKGiunLRmH23aaq8IqOEpBSdxZXkHK5Pivtcyufck0PvuDMl9A==",
   "success": true,
   "projectFilePath": "D:\\Dev\\AspNet\\StockTracker\\StockTracker\\StockTracker.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Karlo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Karlo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Karlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Karlo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
     "C:\\Users\\Karlo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.12\\microsoft.aspnetcore.cryptography.internal.7.0.12.nupkg.sha512",
     "C:\\Users\\Karlo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.12\\microsoft.aspnetcore.cryptography.keyderivation.7.0.12.nupkg.sha512",
     "C:\\Users\\Karlo\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.12\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.12.nupkg.sha512",

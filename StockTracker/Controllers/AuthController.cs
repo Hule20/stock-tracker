@@ -1,5 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using StockTracker.Database;
 using StockTracker.Models.Authentication;
 using StockTracker.Models.Database;
@@ -11,10 +15,12 @@ namespace StockTracker.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly AppDbContext _appDbContext;
+    private readonly IConfiguration _configuration;
 
-    public AuthController(AppDbContext appDbContext)
+    public AuthController(AppDbContext appDbContext, IConfiguration configuration)
     {
         _appDbContext = appDbContext;
+        _configuration = configuration;
     }
 
     [HttpPost("register")]
@@ -29,7 +35,7 @@ public class AuthController : ControllerBase
 
         var passwordHash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
 
-        var newUser = new User()
+        var newUser = new User
         {
             Username = registerUserDto.Username,
             PasswordHash = passwordHash
@@ -39,5 +45,50 @@ public class AuthController : ControllerBase
         _appDbContext.SaveChanges();
 
         return Ok($"User {newUser.Username} created successfully!");
+    }
+
+    [HttpPost("login")]
+    public ActionResult<User> Login(LoginUser loginUserDto)
+    {
+        var findUserByUsername = _appDbContext.Users.FirstOrDefault(u => u.Username == loginUserDto.Username);
+
+        if (findUserByUsername == null)
+        {
+            return BadRequest("This username not found!");
+        }
+
+        if (!BCrypt.Net.BCrypt.Verify(loginUserDto.Password, findUserByUsername.PasswordHash))
+        {
+            return BadRequest("Wrong password!");
+        }
+
+        var token = GenerateToken(loginUserDto);
+
+        return Ok(token);
+    }
+
+    private string GenerateToken(LoginUser userDto)
+    {
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, userDto.Username),
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+            _configuration.GetSection("Jwt:Key").Value!));
+
+        Console.WriteLine(key);
+
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var securityToken = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: credentials
+        );
+
+        var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
+
+        return token;
     }
 }
