@@ -15,6 +15,13 @@ public class StockDataController : ControllerBase
         _finnHubApi = finnHubApi;
     }
 
+    [HttpGet("lookup")]
+    public async Task<IActionResult> GetTickerLookup(string ticker)
+    {
+        var data = await _finnHubApi.GetStockLookup(ticker);
+
+        return Ok(data);
+    }
 
     [HttpGet("latest")]
     public async Task<IActionResult> GetLatestPrice([FromQuery(Name = "ticker")]string ticker)

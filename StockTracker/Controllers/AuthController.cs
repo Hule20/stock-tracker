@@ -77,9 +77,7 @@ public class AuthController : ControllerBase
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
             _configuration.GetSection("Jwt:Key").Value!));
-
-        Console.WriteLine(key);
-
+        
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var securityToken = new JwtSecurityToken(

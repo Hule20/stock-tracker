@@ -19,6 +19,21 @@ public class FinnHubApi
         _httpClientFactory = httpClientFactory;
     }
 
+    public async Task<TickerLookup> GetStockLookup(string ticker)
+    {
+        var client = _httpClientFactory.CreateClient("FinnHubClient");
+
+        var httpRequest = await client.GetAsync(
+            $"search?q={ticker}");
+
+        var responseContent = await httpRequest.Content.ReadAsStringAsync();
+
+        TickerLookup? tickerLookupResult = JsonSerializer
+            .Deserialize<TickerLookup>(responseContent);
+
+        return tickerLookupResult;
+    }
+
     public async Task<Ohlc> GetLatestPrice(string ticker)
     {
         var client = _httpClientFactory.CreateClient("FinnHubClient");

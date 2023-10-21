@@ -1,9 +1,7 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StockTracker.Database;
-using StockTracker.Models.Authentication;
 using StockTracker.Models.Base;
 using StockTracker.Models.Database;
 
@@ -19,13 +17,13 @@ public class UserController : ControllerBase
     {
         _appDbContext = appDbContext;
     }
-
+    
+    // adds stock to user, also checks if stock exists in db, otherwise adds it to Stocks table
     [HttpPost]
     [Authorize]
     public ActionResult<User> AddStockToUser(string ticker)
     {
         var usernameFromToken = User.Identity?.Name;
-        
         if (usernameFromToken == null)
         {
             return Unauthorized("No user info found in token");
@@ -41,7 +39,6 @@ public class UserController : ControllerBase
         
         var stockExists = _appDbContext.Stocks
             .FirstOrDefault(s => s.Ticker == ticker);
-
         var newStock = new Stock();
         if (stockExists == null)
         {
@@ -55,7 +52,7 @@ public class UserController : ControllerBase
 
         if (userExists.Stocks.Any(s => s.Ticker == ticker))
         {
-            return BadRequest("Stock already exists in the watchlist");
+            return BadRequest($"Stock already exists in the {userExists}'s watchlist");
         }
 
         userExists.Stocks.Add(newStock);
