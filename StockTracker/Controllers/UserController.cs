@@ -1,4 +1,7 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StockTracker.Database;
 using StockTracker.Models.Authentication;
 using StockTracker.Models.Base;
@@ -11,27 +14,53 @@ namespace StockTracker.Controllers;
 public class UserController : ControllerBase
 {
     private readonly AppDbContext _appDbContext;
-    
+
     public UserController(AppDbContext appDbContext)
     {
         _appDbContext = appDbContext;
     }
-    
+
     [HttpPost]
-    public ActionResult<User> Create(RegisterUser registerUserDto)
+    [Authorize]
+    public ActionResult<User> AddStockToUser(string ticker)
     {
-        var userExists = _appDbContext.Users.FirstOrDefault(u => u.Username == registerUserDto.Username);
-
-        if (userExists != null) return BadRequest("Username already exists!");
+        var usernameFromToken = User.Identity?.Name;
         
-        var newUser = new User()
+        if (usernameFromToken == null)
         {
-            Username = registerUserDto.Username
-        };
+            return Unauthorized("No user info found in token");
+        }
 
-        _appDbContext.Add(newUser);
+        var userExists = _appDbContext.Users
+            .Include(u => u.Stocks)
+            .FirstOrDefault(u => u.Username == usernameFromToken);
+        if (userExists == null)
+        {
+            return Unauthorized("User not found in database");
+        }
+        
+        var stockExists = _appDbContext.Stocks
+            .FirstOrDefault(s => s.Ticker == ticker);
+
+        var newStock = new Stock();
+        if (stockExists == null)
+        {
+            newStock = new Stock
+            {
+                Ticker = ticker
+            };
+            _appDbContext.Stocks.Add(newStock);
+            _appDbContext.SaveChanges();
+        }
+
+        if (userExists.Stocks.Any(s => s.Ticker == ticker))
+        {
+            return BadRequest("Stock already exists in the watchlist");
+        }
+
+        userExists.Stocks.Add(newStock);
         _appDbContext.SaveChanges();
 
-        return Ok($"New user {newUser.Username} added to database");
+        return Ok($"user found {userExists.Username}, added {newStock.Ticker}");
     }
 }

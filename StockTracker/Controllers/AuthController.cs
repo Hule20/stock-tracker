@@ -61,10 +61,11 @@ public class AuthController : ControllerBase
         {
             return BadRequest("Wrong password!");
         }
-
+        
         var token = GenerateToken(loginUserDto);
+        HttpContext.Response.Headers.Add("Authorization", $"Bearer {token}");
 
-        return Ok(token);
+        return Ok("User logged in successfully!");
     }
 
     private string GenerateToken(LoginUser userDto)
