@@ -1,11 +1,9 @@
 <mat-toolbar>
   <span>Stock Tracker</span>
   <nav>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a routerLink="/register">Register</a></li>
-    </ul>
+    <button mat-stroked-button color="primary" routerLink="/home">Home</button>
+    <button mat-stroked-button color="primary" routerLink="/login">login</button>
+    <button mat-raised-button color="primary" routerLink="/register">Register</button>
   </nav>
 </mat-toolbar>
 <router-outlet></router-outlet>

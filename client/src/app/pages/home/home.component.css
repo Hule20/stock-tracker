@@ -1,0 +1,33 @@
+* {
+}
+
+mat-card {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+mat-form-field {
+  min-width: 20vw;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+
+  margin: 4vh 2vw 0 2vw;
+
+  gap: 10vw;
+}
+
+.result-card {
+  min-width: 20vw;
+  display: flex;
+  
+}
+
+.info-card {
+  min-width: 30vw;
+}
+
+.ac {
+    min-width: 100vw;
+}

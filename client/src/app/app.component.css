@@ -1,29 +1,11 @@
 mat-toolbar {
   display: flex;
   justify-content: space-between;
+  background-color: #a8a4a4;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-}
-
-.nav-links li {
-  margin: 0 15px; /* Adjust spacing between navigation items */
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-  transition: color 0.3s ease; /* Smooth transition for text color */
-}
-
-.nav-links li a:hover {
-  color: #FFD700; /* Change text color on hover */
+nav > button {
+  margin: 0 1vw 0 1vw;
+  min-width: 12vw;
 }

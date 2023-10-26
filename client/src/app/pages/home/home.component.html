@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <form class="example-form">
+    <h1>STOCK SEARCH</h1>
+    <mat-form-field class="ac" class="example-full-width">
+      <mat-label>Symbol...</mat-label>
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        [matAutocomplete]="auto"
+        [formControl]="formControl"
+      />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let option of lookupResult | async"
+          [value]="option"
+        >
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <!-- <div *ngFor="let option of lookupResult | async">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>{{ option.description }}</mat-card-title>
+        <mat-card-subtitle>{{ option.displaySymbol }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>{{ option.type }}</mat-card-content>
+    </mat-card>
+  </div> -->
+  <!-- <mat-card class="result-card">
+    <mat-card-header>
+        <mat-card-title>CompanyName</mat-card-title>
+        <mat-card-subtitle>Symbol</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>Content</mat-card-content>
+  </mat-card>
+  <mat-card class="info-card">
+    <mat-card-header>
+      <mat-card-title>Info</mat-card-title>
+      <mat-card-subtitle>ticker</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>Content</mat-card-content>
+  </mat-card> -->
+</div>
