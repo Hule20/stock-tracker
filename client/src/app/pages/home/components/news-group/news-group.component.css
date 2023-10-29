@@ -1,0 +1,10 @@
+mat-card {
+    max-width: 300px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+.news-cards-group {
+  display: flex;
+  flex-direction: row;
+  gap: 8vw;
+}
