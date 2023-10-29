@@ -44,7 +44,7 @@ public class AuthController : ControllerBase
         _appDbContext.Users.Add(newUser);
         _appDbContext.SaveChanges();
 
-        return Ok($"User {newUser.Username} created successfully!");
+        return Ok(newUser);
     }
 
     [HttpPost("login")]
@@ -61,7 +61,7 @@ public class AuthController : ControllerBase
         {
             return BadRequest("Wrong password!");
         }
-        
+
         var token = GenerateToken(loginUserDto);
         HttpContext.Response.Headers.Add("Authorization", $"Bearer {token}");
 
@@ -77,7 +77,7 @@ public class AuthController : ControllerBase
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
             _configuration.GetSection("Jwt:Key").Value!));
-        
+
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var securityToken = new JwtSecurityToken(

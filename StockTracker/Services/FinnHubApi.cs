@@ -86,4 +86,17 @@ public class FinnHubApi
 
         return timeseriesList;
     }
+    
+    public async Task<List<NewsArticle>> GetNews()
+    {
+        var client = _httpClientFactory.CreateClient("FinnHubClient");
+
+        var httpRequest = await client.GetAsync("news?category=general");
+
+        var responseContent = await httpRequest.Content.ReadAsStringAsync();
+
+        List<NewsArticle> articles = JsonSerializer.Deserialize<List<NewsArticle>>(responseContent);
+
+        return articles;
+    }
 }

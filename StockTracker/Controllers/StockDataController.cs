@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using StockTracker.Models.Database;
+using StockTracker.Models.FinnHub;
 using StockTracker.Services;
 
 namespace StockTracker.Controllers;
@@ -16,7 +18,7 @@ public class StockDataController : ControllerBase
     }
 
     [HttpGet("lookup")]
-    public async Task<IActionResult> GetTickerLookup(string ticker)
+    public async Task<ActionResult<TickerLookup>> GetTickerLookup(string ticker)
     {
         var data = await _finnHubApi.GetStockLookup(ticker);
 
@@ -36,6 +38,14 @@ public class StockDataController : ControllerBase
         [FromQuery(Name = "dateFrom")] string from, [FromQuery(Name = "dateTo")] string to)
     {
         var data = await _finnHubApi.GetFromToData(ticker, from, to);
+
+        return Ok(data);
+    }
+
+    [HttpGet("get-news")]
+    public async Task<ActionResult<List<NewsArticle>>> GetMarketNews()
+    {
+        var data = await _finnHubApi.GetNews();
 
         return Ok(data);
     }
