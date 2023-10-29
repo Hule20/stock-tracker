@@ -1,9 +1,26 @@
-<mat-toolbar>
-  <span>Stock Tracker</span>
-  <nav>
-    <button mat-stroked-button color="primary" routerLink="/home">Home</button>
-    <button mat-stroked-button color="primary" routerLink="/login">login</button>
-    <button mat-raised-button color="primary" routerLink="/register">Register</button>
-  </nav>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <mat-toolbar>
+    <span>Stock Tracker</span>
+    <nav>
+      <button mat-stroked-button color="primary" routerLink="/home">
+        Home
+      </button>
+      <button mat-stroked-button color="primary" routerLink="/login">
+        Login
+      </button>
+      <button mat-raised-button color="primary" routerLink="/register">
+        Register
+      </button>
+    </nav>
+  </mat-toolbar>
+  <div class="router-outlet">
+    <router-outlet></router-outlet>
+  </div>
+  <footer>
+    <div class="social-media">
+      <a href="#"> <i class="fa-brands fa-github fa-2xl"></i> GitHub</a>
+      <a href="#"> <i class="fa-brands fa-linkedin fa-2xl"></i> LinkedIn</a>
+    </div>
+    <div>&#169; <span class="year">2023</span> - Karlo Husak</div>
+  </footer>
+</div>

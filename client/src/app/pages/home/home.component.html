@@ -1,6 +1,7 @@
 <div class="wrapper">
   <form class="example-form">
     <h1>STOCK SEARCH</h1>
+    <h2>Find latest stock data by entering a symbol</h2>
     <mat-form-field class="ac" class="example-full-width">
       <mat-label>Symbol...</mat-label>
       <input
@@ -13,7 +14,7 @@
       />
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
         <mat-option
-          *ngFor="let option of lookupResult | async"
+          *ngFor="let option of symbolSearchResult$ | async"
           [value]="option"
         >
           {{ option }}
@@ -21,7 +22,22 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <!-- <div *ngFor="let option of lookupResult | async">
+  <div class="news-cards-group">
+    <!-- placeholder divs -->
+    <div class="card">
+      <h2>Apple Inc.</h2>
+      <p>Latest analysis and insights on Apple's stock movements.</p>
+    </div>
+    <div class="card">
+      <h2>Google LLC</h2>
+      <p>Up-to-date analysis on Google's recent stock performance.</p>
+    </div>
+    <div class="card">
+      <h2>Amazon Inc.</h2>
+      <p>Expert views on Amazon's stock dynamics.</p>
+    </div>
+  </div>
+  <!-- <div *ngFor="let option of symbolSearchResult$ | async">
     <mat-card class="result-card">
       <mat-card-header>
         <mat-card-title>{{ option.description }}</mat-card-title>

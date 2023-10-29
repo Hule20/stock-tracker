@@ -1,5 +1,13 @@
-mat-toolbar {
+.container {
   display: flex;
+  flex-flow: column wrap;
+}
+
+.router-outlet {
+  flex-grow: 2;
+}
+
+mat-toolbar {
   justify-content: space-between;
   background-color: #a8a4a4;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -8,4 +16,20 @@ mat-toolbar {
 nav > button {
   margin: 0 1vw 0 1vw;
   min-width: 12vw;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 35px;
+  background-color: #a8a4a4;
+}
+
+.social-media > * {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
 }

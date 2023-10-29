@@ -12,12 +12,10 @@ import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 })
 export class HomeComponent {
   formControl = new FormControl('');
-  lookupResult?: Observable<string[]>;
+  symbolSearchResult$?: Observable<string[]>;
 
-  constructor(private finnhubService: FinnhubService) {}
-
-  ngOnInit() {
-    this.lookupResult = this.formControl.valueChanges.pipe(
+  constructor(private finnhubService: FinnhubService) {
+    this.symbolSearchResult$ = this.formControl.valueChanges.pipe(
       switchMap((inputValue) => {
         if (inputValue !== null && inputValue !== undefined) {
           return this.finnhubService.fillAutocomplete(inputValue.toString());
@@ -26,8 +24,12 @@ export class HomeComponent {
         }
       }),
       map((searchResult: AutocompleteDto) => {
-        return searchResult.result.map((val) => val.symbol);
+        return searchResult.result.map((val) => {
+          return val.symbol;
+        });
       })
     );
   }
+
+  ngOnInit() {}
 }

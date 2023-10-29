@@ -1,27 +1,32 @@
 * {
+  margin: 0;
+  padding: 0;
 }
 
 mat-card {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 mat-form-field {
-  min-width: 20vw;
+  min-width: 31vw;
 }
 
 .wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px;
+  /* background-image: url(src\assets\hero-background.jpg); */
+}
 
-  margin: 4vh 2vw 0 2vw;
-
-  gap: 10vw;
+.news-cards-group {
+  display: flex;
+  gap: 2vw;
 }
 
 .result-card {
   min-width: 20vw;
   display: flex;
-  
 }
 
 .info-card {
@@ -29,5 +34,5 @@ mat-form-field {
 }
 
 .ac {
-    min-width: 100vw;
+  min-width: 100vw;
 }
