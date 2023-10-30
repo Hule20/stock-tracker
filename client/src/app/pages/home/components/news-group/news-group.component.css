@@ -6,5 +6,8 @@ mat-card {
 .news-cards-group {
   display: flex;
   flex-direction: row;
-  gap: 8vw;
+  gap: 5vw;
+}
+
+mat-card {
 }

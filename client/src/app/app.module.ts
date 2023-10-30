@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NewsGroupComponent } from './pages/home/components/news-group/news-group.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HomeComponent } from './pages/home/home.component';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
+    NewsGroupComponent,
   ],
   imports: [
     BrowserModule,

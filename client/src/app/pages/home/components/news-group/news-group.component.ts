@@ -16,8 +16,19 @@ export class NewsGroupComponent {
 
   ngOnInit() {
     this.marketNewsResult$ = this.finnhubService.getMarketNews().pipe(
-      map((val) => {
-        return val.slice(0, 3);
+      map((news) => {
+        
+        return news.map((article) => {
+          const dateOnlyStr = article.datetime.slice(0, 10);
+          const date = new Date(dateOnlyStr);
+          const formattedDate = date.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          })
+          
+          return { ...article, datetime: formattedDate}
+        }).slice(0, 3);
       })
     );
   }

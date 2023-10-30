@@ -1,8 +1,8 @@
 <div class="wrapper">
-  <form class="example-form">
+  <form>
     <h1>STOCK SEARCH</h1>
     <h2>Find latest stock data by entering a symbol</h2>
-    <mat-form-field class="ac" class="example-full-width">
+    <mat-form-field>
       <mat-label>Symbol...</mat-label>
       <input
         type="text"
@@ -22,42 +22,5 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <div class="news-cards-group">
-    <!-- placeholder divs -->
-    <div class="card">
-      <h2>Apple Inc.</h2>
-      <p>Latest analysis and insights on Apple's stock movements.</p>
-    </div>
-    <div class="card">
-      <h2>Google LLC</h2>
-      <p>Up-to-date analysis on Google's recent stock performance.</p>
-    </div>
-    <div class="card">
-      <h2>Amazon Inc.</h2>
-      <p>Expert views on Amazon's stock dynamics.</p>
-    </div>
-  </div>
-  <!-- <div *ngFor="let option of symbolSearchResult$ | async">
-    <mat-card class="result-card">
-      <mat-card-header>
-        <mat-card-title>{{ option.description }}</mat-card-title>
-        <mat-card-subtitle>{{ option.displaySymbol }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>{{ option.type }}</mat-card-content>
-    </mat-card>
-  </div> -->
-  <!-- <mat-card class="result-card">
-    <mat-card-header>
-        <mat-card-title>CompanyName</mat-card-title>
-        <mat-card-subtitle>Symbol</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>Content</mat-card-content>
-  </mat-card>
-  <mat-card class="info-card">
-    <mat-card-header>
-      <mat-card-title>Info</mat-card-title>
-      <mat-card-subtitle>ticker</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>Content</mat-card-content>
-  </mat-card> -->
+  <app-news-group></app-news-group>
 </div>

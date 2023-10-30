@@ -1,8 +1,9 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { EMPTY, Observable, map, startWith, switchMap } from 'rxjs';
+import { EMPTY, Observable, map, switchMap, take } from 'rxjs';
 import { AutocompleteDto, Result } from 'src/app/models/autocompleteDto';
+import { NewsArticle } from 'src/app/models/newsArticleDto';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 
 @Component({
@@ -30,6 +31,4 @@ export class HomeComponent {
       })
     );
   }
-
-  ngOnInit() {}
 }
