@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SingleStockComponent } from './pages/single-stock/single-stock.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'stock/:symbol',
+    component: SingleStockComponent,
   },
 ];
 

@@ -1,15 +1,15 @@
 <div class="news-cards-group">
   <mat-card *ngFor="let newsArticle of marketNewsResult$ | async">
     <mat-card-header>
-      <mat-card-title>{{ newsArticle.headline }}</mat-card-title>
+      <mat-card-title maxlength="11">{{ newsArticle.headline }}</mat-card-title>
       <mat-card-subtitle>{{ newsArticle.source }}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [src]="newsArticle.image" alt="Article photo" />
-    <mat-card-content
-      >{{ newsArticle.datetime }}<br /><br />
+    <mat-card-content>
+      <br />{{ newsArticle.datetime }}<br />
       <p>
         {{ newsArticle.summary }}
-      </p></mat-card-content
-    >
+      </p>
+    </mat-card-content>
   </mat-card>
 </div>

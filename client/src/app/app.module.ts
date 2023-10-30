@@ -19,6 +19,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewsGroupComponent } from './pages/home/components/news-group/news-group.component';
+import { SingleStockComponent } from './pages/single-stock/single-stock.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NewsGroupComponent } from './pages/home/components/news-group/news-grou
     LoginComponent,
     HomeComponent,
     NewsGroupComponent,
+    SingleStockComponent,
   ],
   imports: [
     BrowserModule,

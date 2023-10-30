@@ -16,6 +16,7 @@
         <mat-option
           *ngFor="let option of symbolSearchResult$ | async"
           [value]="option"
+          [routerLink]="['/stock', option]"
         >
           {{ option }}
         </mat-option>

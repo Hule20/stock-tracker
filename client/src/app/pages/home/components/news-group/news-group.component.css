@@ -1,7 +1,7 @@
 mat-card {
-    max-width: 300px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
+  max-width: 300px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
 .news-cards-group {
   display: flex;
@@ -9,5 +9,14 @@ mat-card {
   gap: 5vw;
 }
 
-mat-card {
+mat-card-title {
+  font-size: medium;
+  line-height: 15px;
+  max-height: 30px;
+  overflow: hidden;
+}
+
+mat-card img {
+  object-fit: cover;
+  max-height: 100px;
 }

@@ -10,7 +10,7 @@ import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
   styleUrls: ['./news-group.component.css'],
 })
 export class NewsGroupComponent {
-  marketNewsResult$!: Observable<NewsArticle[]>;
+  marketNewsResult$?: Observable<NewsArticle[]>;
 
   constructor(private finnhubService: FinnhubService) {}
 
