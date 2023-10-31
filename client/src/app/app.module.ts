@@ -20,6 +20,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewsGroupComponent } from './pages/home/components/news-group/news-group.component';
 import { SingleStockComponent } from './pages/single-stock/single-stock.component';
+import { StockChartComponent } from './pages/single-stock/components/stock-chart/stock-chart.component';
+
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { SingleStockComponent } from './pages/single-stock/single-stock.componen
     HomeComponent,
     NewsGroupComponent,
     SingleStockComponent,
+    StockChartComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,7 @@ import { SingleStockComponent } from './pages/single-stock/single-stock.componen
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
