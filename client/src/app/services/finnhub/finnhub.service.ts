@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, first, take, tap } from 'rxjs';
-import { AutocompleteDto } from 'src/app/models/autocompleteDto';
+import { AutocompleteDto, CompanyName } from 'src/app/models/autocompleteDto';
+import { CompanyProfile } from 'src/app/models/companyProfileDto';
 import { LatestPriceDto } from 'src/app/models/latestPriceDataDto';
 import { NewsArticle } from 'src/app/models/newsArticleDto';
 import { OhlcTimeseriesDto } from 'src/app/models/ohlcTimeseriesDto';
@@ -36,6 +37,12 @@ export class FinnhubService {
   getLatestPriceData(symbol: string): Observable<LatestPriceDto> {
     return this.httpClient.get<LatestPriceDto>(
       `${devEnv.be_base_url}stock/latest?ticker=${symbol}`
+    );
+  }
+
+  getCompanyProfile(symbol: string): Observable<CompanyProfile> {
+    return this.httpClient.get<CompanyProfile>(
+      `${devEnv.be_base_url}stock/company-profile?ticker=${symbol}`
     );
   }
 }

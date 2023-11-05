@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CompanyName } from 'src/app/models/autocompleteDto';
+import { CompanyProfile } from 'src/app/models/companyProfileDto';
 import { LatestPriceDto } from 'src/app/models/latestPriceDataDto';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
-import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 @Component({
   selector: 'app-single-stock',
@@ -14,12 +14,11 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 export class SingleStockComponent {
   requestSymbol = '';
   latestStockPrice!: LatestPriceDto;
-  companyName?: CompanyName;
+  companyProfile?: CompanyProfile;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private finnhubService: FinnhubService,
-    private sharedDataService: SharedDataService
   ) {}
 
   ngOnInit() {
@@ -27,7 +26,7 @@ export class SingleStockComponent {
       this.activatedRoute.snapshot.paramMap.get('symbol') || '';
 
     this.getStockData(this.requestSymbol);
-    this.getCompanyInfoData();
+    this.getCompanyProfile(this.requestSymbol);
   }
 
   private getStockData(symbol: string) {
@@ -36,9 +35,9 @@ export class SingleStockComponent {
       .subscribe((result) => (this.latestStockPrice = result));
   }
 
-  private getCompanyInfoData() {
-    this.sharedDataService.getCompanyInfo().subscribe(
-      (info) => (this.companyName = info)
-    );
+  private getCompanyProfile(symbol: string) {
+    this.finnhubService
+      .getCompanyProfile(symbol)
+      .subscribe((result) => (this.companyProfile = result));
   }
 }
