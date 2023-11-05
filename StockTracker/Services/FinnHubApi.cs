@@ -40,7 +40,7 @@ public class FinnHubApi
 
         var httpRequest = await client.GetAsync(
             $"quote?symbol={ticker}");
-        
+
         var responseContent = await httpRequest.Content.ReadAsStringAsync();
 
         var serializerOptions = new JsonSerializerOptions
@@ -86,7 +86,7 @@ public class FinnHubApi
 
         return timeseriesList;
     }
-    
+
     public async Task<List<NewsArticle>> GetNews()
     {
         var client = _httpClientFactory.CreateClient("FinnHubClient");
@@ -95,8 +95,26 @@ public class FinnHubApi
 
         var responseContent = await httpRequest.Content.ReadAsStringAsync();
 
-        List<NewsArticle> articles = JsonSerializer.Deserialize<List<NewsArticle>>(responseContent);
+        var serializerOptions = new JsonSerializerOptions
+        {
+            Converters = { new NewsArticleConverter() }
+        };
+        
+        var articles = JsonSerializer.Deserialize<List<NewsArticle>>(responseContent, serializerOptions);
 
         return articles;
+    }
+
+    public async Task<CompanyProfile> GetCompanyProfile(string ticker)
+    {
+        var client = _httpClientFactory.CreateClient("FinnHubClient");
+
+        var httpRequest = await client.GetAsync($"stock/profile2?symbol={ticker}");
+
+        var responseContent = await httpRequest.Content.ReadAsStringAsync();
+
+        var companyProfile = JsonSerializer.Deserialize<CompanyProfile>(responseContent);
+
+        return companyProfile;
     }
 }

@@ -16,9 +16,10 @@
         <mat-option
           *ngFor="let option of symbolSearchResult$ | async"
           [value]="option"
-          [routerLink]="['/stock', option]"
+          [routerLink]="['/stock', option.symbol]"
+          (click)="setCompanyInfo(option)"
         >
-          {{ option }}
+          {{ option.symbol }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

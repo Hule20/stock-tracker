@@ -1,8 +1,8 @@
 export interface AutocompleteDto {
-  result: Result[];
+  result: CompanyName[];
 }
 
-export interface Result {
+export interface CompanyName {
   description: string;
   displaySymbol: string;
   symbol: string;

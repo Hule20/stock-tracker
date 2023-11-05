@@ -42,10 +42,18 @@ public class StockDataController : ControllerBase
         return Ok(data);
     }
 
-    [HttpGet("get-news")]
+    [HttpGet("news")]
     public async Task<ActionResult<List<NewsArticle>>> GetMarketNews()
     {
         var data = await _finnHubApi.GetNews();
+
+        return Ok(data);
+    }
+
+    [HttpGet("company-profile")]
+    public async Task<ActionResult<CompanyProfile>> GetCompanyProfile(string ticker)
+    {
+        var data = await _finnHubApi.GetCompanyProfile(ticker);
 
         return Ok(data);
     }

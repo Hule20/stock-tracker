@@ -1,2 +1,21 @@
-<h1></h1>
-<app-stock-chart [symbol]="requestSymbol"></app-stock-chart>
+<div class="wrapper">
+  <app-stock-chart [symbol]="requestSymbol"></app-stock-chart>
+  <mat-card>
+    <header>
+      <mat-card-title>{{ companyName?.description }}</mat-card-title>
+      <mat-card-subtitle>{{ companyName?.symbol }}</mat-card-subtitle>
+    </header>
+
+    <mat-card-content>
+      Close: ${{ latestStockPrice.close }}<br />
+      Change: {{ latestStockPrice.changePercentage }} %
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>BasicInfo</mat-card-title>
+
+    <mat-card-content>
+      
+    </mat-card-content>
+  </mat-card>
+</div>
