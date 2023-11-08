@@ -1,0 +1,26 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20vh;
+  }
+  
+  mat-card {
+    max-width: fit-content;
+    display: flex;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    min-width: 20vw;
+  }
+  
+  mat-card-actions{
+    justify-content: center;
+    gap: 3vw;
+  }
+  

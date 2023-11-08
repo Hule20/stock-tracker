@@ -11,9 +11,7 @@
           </div>
           <div
             mat-card-avatar
-            style="background-image: url('{{
-              companyProfile?.logo
-            }}');background-size: cover;"
+            style="background-image: url('{{companyProfile?.logo}}');background-size: cover;"
           ></div>
         </header>
         Close: ${{ latestStockPrice?.close }}
@@ -21,6 +19,7 @@
         ({{ latestStockPrice?.changePercentage }}%)
       </mat-card-content>
     </mat-card>
+
     <mat-card>
       <mat-card-content>
         <header>

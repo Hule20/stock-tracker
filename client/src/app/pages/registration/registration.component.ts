@@ -15,7 +15,7 @@ export class RegistrationComponent {
   public register(registrationDto: RegistrationDto) {
     this.authService.register(registrationDto).subscribe({
       next: (val) => console.log(val.username + ' succesfully registered'),
-      error: (err) => console.log('HTTP error: ' + err),
+      error: (err) => console.log('HTTP error: ' + err.error),
     });
   }
 }
