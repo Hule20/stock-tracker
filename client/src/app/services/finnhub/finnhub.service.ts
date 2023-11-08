@@ -23,7 +23,7 @@ export class FinnhubService {
 
   getMarketNews(): Observable<NewsArticle[]> {
     return this.httpClient.get<NewsArticle[]>(
-      `${devEnv.be_base_url}stock/get-news`
+      `${devEnv.be_base_url}stock/news`
     );
   }
 

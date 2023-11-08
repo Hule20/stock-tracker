@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using StockTracker.Utilities;
 using StockTracker.Models.FinnHub;
 using DateTimeConverter = StockTracker.Utilities.DateTimeConverter;
+using Metrics = Microsoft.Identity.Client.Metrics;
 
 namespace StockTracker.Services;
 
@@ -99,7 +100,7 @@ public class FinnHubApi
         {
             Converters = { new NewsArticleConverter() }
         };
-        
+
         var articles = JsonSerializer.Deserialize<List<NewsArticle>>(responseContent, serializerOptions);
 
         return articles;
@@ -112,9 +113,21 @@ public class FinnHubApi
         var httpRequest = await client.GetAsync($"stock/profile2?symbol={ticker}");
 
         var responseContent = await httpRequest.Content.ReadAsStringAsync();
-
         var companyProfile = JsonSerializer.Deserialize<CompanyProfile>(responseContent);
 
         return companyProfile;
+    }
+
+    public async Task<YearlyFinancials> GetYearlyFinancials(string ticker)
+    {
+        var client = _httpClientFactory.CreateClient("FinnHubClient");
+
+        var httpRequest = await client.GetAsync($"stock/metric?symbol={ticker}&metric=all");
+
+        var responseContent = await httpRequest.Content.ReadAsStringAsync();
+
+        var yearlyHighLow = JsonSerializer.Deserialize<YearlyFinancials>(responseContent);
+
+        return yearlyHighLow;
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StockTracker.Models.Database;
 using StockTracker.Models.FinnHub;
 using StockTracker.Services;
+using Metrics = Microsoft.Identity.Client.Metrics;
 
 namespace StockTracker.Controllers;
 
@@ -54,6 +55,14 @@ public class StockDataController : ControllerBase
     public async Task<ActionResult<CompanyProfile>> GetCompanyProfile(string ticker)
     {
         var data = await _finnHubApi.GetCompanyProfile(ticker);
+
+        return Ok(data);
+    }
+
+    [HttpGet("yearly-financials")]
+    public async Task<ActionResult<YearlyFinancials>> GetYearlyFinancials(string ticker)
+    {
+        var data = await _finnHubApi.GetYearlyFinancials(ticker);
 
         return Ok(data);
     }
