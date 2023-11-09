@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-content>
+    <header class="latest-header">
+      <div>
+        <mat-card-title> {{ symbol }}</mat-card-title>
+      </div>
+      <div
+        mat-card-avatar
+        style="background-image: url('{{companyProfile?.logo}}');background-size: cover;"
+      ></div>
+    </header>
+    Close: ${{ latestStockPrice?.close }}
+    {{ latestStockPrice?.change }}
+    ({{ latestStockPrice?.changePercentage }}%)
+  </mat-card-content>
+</mat-card>

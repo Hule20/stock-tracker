@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,8 @@ import { StockChartComponent } from './pages/single-stock/components/stock-chart
 
 import { NgChartsModule } from 'ng2-charts';
 import { WatchlistComponent } from './pages/watchlist/watchlist.component';
+import { StockPriceCardComponent } from './shared_components/stock-price-card/stock-price-card.component';
+import { AuthInterceptor } from './services/database/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { WatchlistComponent } from './pages/watchlist/watchlist.component';
     NewsGroupComponent,
     SingleStockComponent,
     StockChartComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    StockPriceCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,9 +52,15 @@ import { WatchlistComponent } from './pages/watchlist/watchlist.component';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    NgChartsModule
+    NgChartsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

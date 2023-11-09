@@ -2,23 +2,7 @@
   <app-stock-chart [symbol]="requestSymbol"></app-stock-chart>
 
   <div class="cards">
-    <mat-card>
-      <mat-card-content>
-        <header class="latest-header">
-          <div>
-            <mat-card-title> Latest</mat-card-title>
-            <mat-card-subtitle> {{ companyProfile?.ticker }}</mat-card-subtitle>
-          </div>
-          <div
-            mat-card-avatar
-            style="background-image: url('{{companyProfile?.logo}}');background-size: cover;"
-          ></div>
-        </header>
-        Close: ${{ latestStockPrice?.close }}
-        {{ latestStockPrice?.change }}
-        ({{ latestStockPrice?.changePercentage }}%)
-      </mat-card-content>
-    </mat-card>
+   <app-stock-price-card [symbol]="requestSymbol" ></app-stock-price-card>
 
     <mat-card>
       <mat-card-content>

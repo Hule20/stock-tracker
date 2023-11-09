@@ -1,0 +1,22 @@
+.cards {
+  display: flex;
+  gap: 2vw;
+}
+
+mat-card {
+  width: 300px;
+  height: fit-content;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.latest-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
