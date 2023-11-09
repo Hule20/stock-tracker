@@ -1,16 +1,29 @@
-<div class="container">
+<div class="wrapper">
   <mat-toolbar>
     <span>Stock Tracker</span>
     <nav>
-      <button mat-stroked-button color="primary" routerLink="/home">
-        Home
-      </button>
-      <button mat-stroked-button color="primary" routerLink="/login">
-        Login
-      </button>
-      <button mat-raised-button color="primary" routerLink="/register">
-        Register
-      </button>
+      <ng-container *ngIf="authService.isAuthenticated |async; else showUnauthenticatedBtns">
+        <button mat-stroked-button color="primary" routerLink="/home">
+          Home
+        </button>
+        <button mat-stroked-button color="primary" routerLink="/watchlist">
+          Watchlist
+        </button>
+        <button mat-raised-button color="primary" (click)="logout()">
+          Logout
+        </button>
+      </ng-container>
+      <ng-template #showUnauthenticatedBtns>
+        <button mat-stroked-button color="primary" routerLink="/home">
+          Home
+        </button>
+        <button mat-stroked-button color="primary" routerLink="/login">
+          Login
+        </button>
+        <button mat-raised-button color="primary" routerLink="/register">
+          Register
+        </button>
+      </ng-template>
     </nav>
   </mat-toolbar>
   <div class="router-outlet">

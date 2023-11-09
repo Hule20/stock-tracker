@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginDto } from 'src/app/models/loginDto';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
@@ -11,7 +12,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 export class LoginComponent {
   loginDto = new LoginDto();
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private router: Router) {}
 
   login(loginDto: LoginDto) {
     this.authService.login(loginDto).subscribe({
@@ -20,9 +21,10 @@ export class LoginComponent {
 
         if (token) {
           this.authService.setAuthToken(token);
+          this.authService.isAuthenticated.next(true);
         }
 
-        console.log(token);
+        this.router.navigate(['/home']);
       },
       error: (err) => console.log('error logging in', err),
     });

@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LoginDto } from 'src/app/models/loginDto';
 import { RegistrationDto } from 'src/app/models/registrationDto';
 
@@ -10,16 +10,13 @@ import { devEnv } from 'src/environments/environment.dev';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  tokenKey: string = '';
+
+  public isAuthenticated = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
   setAuthToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-  }
-
-  getAuthToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    localStorage.setItem('token', token);
   }
 
   register(registrationDto: RegistrationDto): Observable<RegistrationDto> {
@@ -36,4 +33,11 @@ export class AuthenticationService {
       { observe: 'response' }
     );
   }
+
+  logout() {
+    this.isAuthenticated.next(false);
+    localStorage.removeItem('token');
+  }
+
+  
 }
