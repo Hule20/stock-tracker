@@ -12,6 +12,7 @@ import { devEnv } from 'src/environments/environment.dev';
 export class AuthenticationService {
 
   public isAuthenticated = new BehaviorSubject<boolean>(false);
+  public username?: string;
 
   constructor(private http: HttpClient) {}
 
@@ -38,6 +39,4 @@ export class AuthenticationService {
     this.isAuthenticated.next(false);
     localStorage.removeItem('token');
   }
-
-  
 }

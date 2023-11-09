@@ -43,6 +43,5 @@ namespace StockTracker.Utilities
             writer.WriteString("url", value.Url);
             writer.WriteEndObject();
         }
-
     }
 }

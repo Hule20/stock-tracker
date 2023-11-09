@@ -4,6 +4,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SingleStockComponent } from './pages/single-stock/single-stock.component';
+import { WatchlistComponent } from './pages/watchlist/watchlist.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'stock/:symbol',
     component: SingleStockComponent,
+  },
+  {
+    path: 'watchlist',
+    component: WatchlistComponent,
   },
 ];
 

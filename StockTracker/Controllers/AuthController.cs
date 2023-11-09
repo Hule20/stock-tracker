@@ -65,7 +65,7 @@ public class AuthController : ControllerBase
         var token = GenerateToken(loginUserDto);
         HttpContext.Response.Headers.Add("Authorization", $"Bearer {token}");
 
-        return Ok("User logged in successfully!");
+        return Ok(new { message = "User logged in successfully!" });
     }
 
     private string GenerateToken(LoginUser userDto)

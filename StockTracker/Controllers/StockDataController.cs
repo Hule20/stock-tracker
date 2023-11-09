@@ -27,7 +27,7 @@ public class StockDataController : ControllerBase
     }
 
     [HttpGet("latest")]
-    public async Task<IActionResult> GetLatestPrice([FromQuery(Name = "ticker")]string ticker)
+    public async Task<IActionResult> GetLatestPrice([FromQuery(Name = "ticker")] string ticker)
     {
         var data = await _finnHubApi.GetLatestPrice(ticker);
 
@@ -55,14 +55,6 @@ public class StockDataController : ControllerBase
     public async Task<ActionResult<CompanyProfile>> GetCompanyProfile(string ticker)
     {
         var data = await _finnHubApi.GetCompanyProfile(ticker);
-
-        return Ok(data);
-    }
-
-    [HttpGet("yearly-financials")]
-    public async Task<ActionResult<YearlyFinancials>> GetYearlyFinancials(string ticker)
-    {
-        var data = await _finnHubApi.GetYearlyFinancials(ticker);
 
         return Ok(data);
     }

@@ -23,6 +23,7 @@ import { SingleStockComponent } from './pages/single-stock/single-stock.componen
 import { StockChartComponent } from './pages/single-stock/components/stock-chart/stock-chart.component';
 
 import { NgChartsModule } from 'ng2-charts';
+import { WatchlistComponent } from './pages/watchlist/watchlist.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgChartsModule } from 'ng2-charts';
     HomeComponent,
     NewsGroupComponent,
     SingleStockComponent,
-    StockChartComponent
+    StockChartComponent,
+    WatchlistComponent
   ],
   imports: [
     BrowserModule,

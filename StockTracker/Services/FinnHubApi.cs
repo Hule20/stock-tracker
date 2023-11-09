@@ -117,17 +117,4 @@ public class FinnHubApi
 
         return companyProfile;
     }
-
-    public async Task<YearlyFinancials> GetYearlyFinancials(string ticker)
-    {
-        var client = _httpClientFactory.CreateClient("FinnHubClient");
-
-        var httpRequest = await client.GetAsync($"stock/metric?symbol={ticker}&metric=all");
-
-        var responseContent = await httpRequest.Content.ReadAsStringAsync();
-
-        var yearlyHighLow = JsonSerializer.Deserialize<YearlyFinancials>(responseContent);
-
-        return yearlyHighLow;
-    }
 }

@@ -22,6 +22,7 @@ export class LoginComponent {
         if (token) {
           this.authService.setAuthToken(token);
           this.authService.isAuthenticated.next(true);
+          this.authService.username = loginDto.username;
         }
 
         this.router.navigate(['/home']);

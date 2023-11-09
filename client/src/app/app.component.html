@@ -2,7 +2,13 @@
   <mat-toolbar>
     <span>Stock Tracker</span>
     <nav>
-      <ng-container *ngIf="authService.isAuthenticated |async; else showUnauthenticatedBtns">
+      <ng-container
+        *ngIf="
+          authService.isAuthenticated | async;
+          else showUnauthenticatedBtns
+        "
+      >
+        <span>Hello, {{ authService.username }} !</span>
         <button mat-stroked-button color="primary" routerLink="/home">
           Home
         </button>
