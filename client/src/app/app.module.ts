@@ -25,7 +25,7 @@ import { StockChartComponent } from './pages/single-stock/components/stock-chart
 import { NgChartsModule } from 'ng2-charts';
 import { WatchlistComponent } from './pages/watchlist/watchlist.component';
 import { StockPriceCardComponent } from './shared_components/stock-price-card/stock-price-card.component';
-import { AuthInterceptor } from './services/database/auth-interceptor';
+import { AuthInterceptor } from './services/authentication/auth-interceptor';
 
 @NgModule({
   declarations: [
