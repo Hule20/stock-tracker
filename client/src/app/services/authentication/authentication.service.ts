@@ -11,13 +11,13 @@ import { devEnv } from 'src/environments/environment.dev';
 })
 export class AuthenticationService {
 
-  public isAuthenticated = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$ = new BehaviorSubject<boolean>(false);
   public username?: string;
 
   constructor(private http: HttpClient) {}
 
   setAuthToken(token: string) {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   register(registrationDto: RegistrationDto): Observable<RegistrationDto> {
@@ -36,7 +36,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.isAuthenticated.next(false);
-    localStorage.removeItem('token');
+    this.isAuthenticated$.next(false);
+    sessionStorage.removeItem('token');
   }
 }

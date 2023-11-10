@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SingleStockComponent } from './pages/single-stock/single-stock.component';
 import { WatchlistComponent } from './pages/watchlist/watchlist.component';
+import { authGuard } from './services/authentication/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
   {
     path: 'watchlist',
     component: WatchlistComponent,
+    canActivate: [authGuard],
   },
 ];
 

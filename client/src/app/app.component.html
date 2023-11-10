@@ -4,7 +4,7 @@
     <nav>
       <ng-container
         *ngIf="
-          authService.isAuthenticated | async;
+          authService.isAuthenticated$ | async;
           else showUnauthenticatedBtns
         "
       >
