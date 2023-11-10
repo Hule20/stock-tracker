@@ -1,12 +1,3 @@
-.wrapper {
-  display: flex;
-  flex-flow: column wrap;
-}
-
-.router-outlet {
-  flex-grow: 2;
-}
-
 mat-toolbar {
   justify-content: space-between;
   background-color: white;

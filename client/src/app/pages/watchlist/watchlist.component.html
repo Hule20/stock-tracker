@@ -1,4 +1,7 @@
-<app-stock-price-card
-  *ngFor="let stock of watchlist"
-  [symbol]="stock.ticker"
-></app-stock-price-card>
+<div class="wrapper">
+  <app-stock-price-card
+    *ngFor="let stock of watchlist"
+    [symbol]="stock.ticker"
+    class="stock-card"
+  ></app-stock-price-card>
+</div>
