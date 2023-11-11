@@ -1,13 +1,24 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-around;
+  margin: 16px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: flex-end;
 }
 
 .cards {
   display: flex;
   gap: 2vw;
+}
+
+button {
+  max-width: 100px;
 }
 
 mat-card {

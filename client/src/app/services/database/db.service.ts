@@ -15,4 +15,11 @@ export class DbService {
       `${devEnv.be_base_url}user/watchlist`
     );
   }
+
+  addToUserWatchlist(symbol: string): Observable<any> {
+    return this.http.post(
+      `${devEnv.be_base_url}user/to-watchlist?ticker=${symbol}`,
+      null
+    );
+  }
 }

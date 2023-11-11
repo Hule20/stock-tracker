@@ -4,6 +4,8 @@ import { Observable, map } from 'rxjs';
 import { CompanyName } from 'src/app/models/autocompleteDto';
 import { CompanyProfile } from 'src/app/models/companyProfileDto';
 import { LatestPriceDto } from 'src/app/models/latestPriceDataDto';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { DbService } from 'src/app/services/database/db.service';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 
 @Component({
@@ -17,7 +19,9 @@ export class SingleStockComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private finnhubService: FinnhubService
+    private finnhubService: FinnhubService,
+    public authService: AuthenticationService,
+    private dbService: DbService
   ) {}
 
   ngOnInit() {
@@ -31,5 +35,12 @@ export class SingleStockComponent {
     this.finnhubService
       .getCompanyProfile(symbol)
       .subscribe((result) => (this.companyProfile = result));
+  }
+
+  public addToWatchlist() {
+    this.dbService.addToUserWatchlist(this.requestSymbol).subscribe(
+      (next) => console.log('stock added'),
+      (err) => console.log('err', err)
+    );
   }
 }

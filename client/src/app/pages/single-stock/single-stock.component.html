@@ -1,19 +1,31 @@
 <div class="wrapper">
   <app-stock-chart [symbol]="requestSymbol"></app-stock-chart>
 
-  <div class="cards">
-   <app-stock-price-card [symbol]="requestSymbol" ></app-stock-price-card>
+  <div class="content">
+    <button
+      *ngIf="authService.isAuthenticated$ | async"
+      (click)="addToWatchlist()"
+      mat-raised-button
+      color="accent"
+    >
+      Follow
+    </button>
+    <div class="cards">
+      <app-stock-price-card [symbol]="requestSymbol"></app-stock-price-card>
 
-    <mat-card>
-      <mat-card-content>
-        <header>
-          <mat-card-title> {{ companyProfile?.name }}</mat-card-title>
-          <mat-card-subtitle> {{ companyProfile?.exchange }}</mat-card-subtitle>
-          Country: {{ companyProfile?.country }} <br />
-          Industry: {{ companyProfile?.finnhubIndustry }} <br />
-          Mkt Cap: {{ companyProfile?.marketCapitalization }} <br />
-        </header>
-      </mat-card-content>
-    </mat-card>
+      <mat-card>
+        <mat-card-content>
+          <header>
+            <mat-card-title> {{ companyProfile?.name }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ companyProfile?.exchange }}</mat-card-subtitle
+            >
+            Country: {{ companyProfile?.country }} <br />
+            Industry: {{ companyProfile?.finnhubIndustry }} <br />
+            Mkt Cap: {{ companyProfile?.marketCapitalization }} <br />
+          </header>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

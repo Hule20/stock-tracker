@@ -8,8 +8,8 @@ export const authGuard = () => {
   const router = inject(Router);
 
   return authService.isAuthenticated$.pipe(
-    map((value) => {
-      if (value) {
+    map((authenticated) => {
+      if (authenticated) {
         return true;
       }
 
