@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'watchlist',
     component: WatchlistComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
   },
 ];
 
