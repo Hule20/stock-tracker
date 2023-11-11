@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { CompanyName } from 'src/app/models/autocompleteDto';
@@ -21,7 +22,8 @@ export class SingleStockComponent {
     private activatedRoute: ActivatedRoute,
     private finnhubService: FinnhubService,
     public authService: AuthenticationService,
-    private dbService: DbService
+    private dbService: DbService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -39,7 +41,11 @@ export class SingleStockComponent {
 
   public addToWatchlist() {
     this.dbService.addToUserWatchlist(this.requestSymbol).subscribe(
-      (next) => console.log('stock added'),
+      (next) => {
+        this.snackBar.open(`${this.requestSymbol} added to watchlist!`, 'OK', {
+          duration: 3000,
+        });
+      },
       (err) => console.log('err', err)
     );
   }

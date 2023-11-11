@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RegistrationComponent } from './pages/registration/registration.component';
@@ -49,6 +50,7 @@ import { AuthInterceptor } from './services/authentication/auth-interceptor';
     MatButtonModule,
     MatFormFieldModule,
     MatCardModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
