@@ -27,7 +27,7 @@ public class UserController : ControllerBase
         {
             return Unauthorized("No user info found in token");
         }
-        
+
         var user = _appDbContext.Users
             .Include(u => u.Stocks)
             .FirstOrDefault(u => u.Username == usernameFromToken);
@@ -45,14 +45,13 @@ public class UserController : ControllerBase
     }
 
     // adds stock to user, also checks if stock exists in db, otherwise adds it to Stocks table
-    [HttpPost]
-    //[Authorize]
-    public ActionResult<User> AddStockToUser(string ticker)
+    [HttpPost("to-watchlist")]
+    public ActionResult AddStockToUser(string ticker)
     {
         var usernameFromToken = User.Identity?.Name;
         if (usernameFromToken == null)
         {
-            return Unauthorized("No user info found in token");
+            return Unauthorized(new { message = "Token not found!" });
         }
 
         var userExists = _appDbContext.Users
@@ -60,7 +59,7 @@ public class UserController : ControllerBase
             .FirstOrDefault(u => u.Username == usernameFromToken);
         if (userExists == null)
         {
-            return Unauthorized("User not found in database");
+            return Unauthorized(new { message = "User not found!" });
         }
 
         var stockExists = _appDbContext.Stocks
@@ -78,12 +77,12 @@ public class UserController : ControllerBase
 
         if (userExists.Stocks.Any(s => s.Ticker == ticker))
         {
-            return BadRequest($"Stock already exists in the {userExists}'s watchlist");
+            return BadRequest(new { message = $"Stock already exists in the {userExists}'s watchlist" });
         }
 
         userExists.Stocks.Add(newStock);
         _appDbContext.SaveChanges();
 
-        return Ok($"user found {userExists.Username}, added {newStock.Ticker}");
+        return Ok(new { message = $"{newStock} added successfully to watchlist" });
     }
 }
