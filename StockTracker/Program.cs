@@ -1,12 +1,10 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
+using StockTracker;
 using StockTracker.Database;
 using StockTracker.Services;
-using MediaTypeHeaderValue = System.Net.Http.Headers.MediaTypeHeaderValue;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +34,7 @@ builder.Services.AddHttpClient("FinnHubClient", client =>
 {
     client.BaseAddress = new Uri("https://finnhub.io/api/v1/");
     client.DefaultRequestHeaders
-        .Add("X-Finnhub-Token", "cj1r20pr01qhv0uhtdr0cj1r20pr01qhv0uhtdrg");
+        .Add("X-Finnhub-Token", Secrets.FinnHubApiKey);
 });
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
