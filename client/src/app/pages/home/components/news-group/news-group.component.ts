@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { switchMap, EMPTY, map, Observable } from 'rxjs';
-import { AutocompleteDto } from 'src/app/models/autocompleteDto';
-import { NewsArticle } from 'src/app/models/newsArticleDto';
+import { AutocompleteDto } from 'src/app/models/finnhub/autocompleteDto';
+import { NewsArticle } from 'src/app/models/finnhub/newsArticleDto';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 
 @Component({

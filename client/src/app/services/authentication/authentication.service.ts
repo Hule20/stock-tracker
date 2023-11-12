@@ -1,8 +1,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { LoginDto } from 'src/app/models/loginDto';
-import { RegistrationDto } from 'src/app/models/registrationDto';
+import { LoginDto } from 'src/app/models/auth/loginDto';
+import { RegistrationDto } from 'src/app/models/auth/registrationDto';
 
 import { devEnv } from 'src/environments/environment.dev';
 

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { map, take } from 'rxjs';
-import { CompanyProfile } from 'src/app/models/companyProfileDto';
-import { LatestPriceDto } from 'src/app/models/latestPriceDataDto';
+import { CompanyProfile } from 'src/app/models/finnhub/companyProfileDto';
+import { LatestPriceDto } from 'src/app/models/finnhub/latestPriceDataDto';
 import { DbService } from 'src/app/services/database/db.service';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 
@@ -17,6 +17,7 @@ export class StockPriceCardComponent {
   @Input() showRemoveButton = false;
   latestStockPrice?: LatestPriceDto;
   companyProfile?: CompanyProfile;
+
   constructor(
     private finnhubService: FinnhubService,
     private dbService: DbService,
@@ -52,6 +53,7 @@ export class StockPriceCardComponent {
         this.snackBar.open(`${symbol} removed from watchlist`, 'OK', {
           duration: 3000,
         });
+        location.reload();
       },
       (err) => console.log('error', err)
     );

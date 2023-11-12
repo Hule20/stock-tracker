@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RegistrationDto } from 'src/app/models/registrationDto';
+import { RegistrationDto } from 'src/app/models/auth/registrationDto';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({

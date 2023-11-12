@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginDto } from 'src/app/models/loginDto';
+import { LoginDto } from 'src/app/models/auth/loginDto';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 
 import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { OhlcTimeseriesDto } from 'src/app/models/ohlcTimeseriesDto';
+import { OhlcTimeseriesDto } from 'src/app/models/finnhub/ohlcTimeseriesDto';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 
 @Component({
