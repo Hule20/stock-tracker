@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 import { CompanyProfile } from 'src/app/models/companyProfileDto';
 import { LatestPriceDto } from 'src/app/models/latestPriceDataDto';
+import { DbService } from 'src/app/services/database/db.service';
 import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 
 @Component({
@@ -12,10 +14,14 @@ import { FinnhubService } from 'src/app/services/finnhub/finnhub.service';
 })
 export class StockPriceCardComponent {
   @Input() symbol = '';
+  @Input() showRemoveButton = false;
   latestStockPrice?: LatestPriceDto;
   companyProfile?: CompanyProfile;
-
-  constructor(private finnhubService: FinnhubService) {}
+  constructor(
+    private finnhubService: FinnhubService,
+    private dbService: DbService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.getStockData(this.symbol);
@@ -38,5 +44,16 @@ export class StockPriceCardComponent {
     this.finnhubService
       .getCompanyProfile(symbol)
       .subscribe((result) => (this.companyProfile = result));
+  }
+
+  removeFromWatchlist(symbol: string) {
+    this.dbService.removeFromUserWatchlist(symbol).subscribe(
+      (next) => {
+        this.snackBar.open(`${symbol} removed from watchlist`, 'OK', {
+          duration: 3000,
+        });
+      },
+      (err) => console.log('error', err)
+    );
   }
 }

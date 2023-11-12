@@ -2,6 +2,7 @@
   <app-stock-price-card
     *ngFor="let stock of watchlist"
     [symbol]="stock.ticker"
+    [showRemoveButton]="true"
     class="stock-card"
   ></app-stock-price-card>
 </div>

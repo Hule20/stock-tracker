@@ -46,7 +46,7 @@ export class SingleStockComponent {
           duration: 3000,
         });
       },
-      (err) => console.log('err', err)
+      (err) => console.error('err', err)
     );
   }
 }

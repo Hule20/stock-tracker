@@ -46,7 +46,7 @@ public class UserController : ControllerBase
 
     // adds stock to user, also checks if stock exists in db, otherwise adds it to Stocks table
     [HttpPost("to-watchlist")]
-    public ActionResult AddStockToUser(string ticker)
+    public ActionResult AddStockToWatchlist(string ticker)
     {
         var usernameFromToken = User.Identity?.Name;
         if (usernameFromToken == null)
@@ -84,5 +84,34 @@ public class UserController : ControllerBase
         _appDbContext.SaveChanges();
 
         return Ok(new { message = $"{newStock} added successfully to watchlist" });
+    }
+
+    [HttpDelete("remove-from-watchlist")]
+    public ActionResult DeleteStockFromWatchlist(string ticker)
+    {
+        var usernameFromToken = User.Identity?.Name;
+        if (usernameFromToken == null)
+        {
+            return Unauthorized(new { message = "Token not found!" });
+        }
+
+        var userExists = _appDbContext.Users
+            .Include(u => u.Stocks)
+            .FirstOrDefault(u => u.Username == usernameFromToken);
+        if (userExists == null)
+        {
+            return Unauthorized(new { message = "User not found!" });
+        }
+
+        var stockToDelete = userExists.Stocks.FirstOrDefault(s => s.Ticker == ticker);
+        if (stockToDelete == null)
+        {
+            return NotFound(new { message = $"Stock with ticker {ticker} not found in the watchlist" });
+        }
+
+        userExists.Stocks.Remove(stockToDelete);
+        _appDbContext.SaveChanges();
+
+        return Ok(new { message = $"{stockToDelete.Ticker} deleted successfully from watchlist" });
     }
 }

@@ -13,4 +13,7 @@
     {{ latestStockPrice?.change }}
     ({{ latestStockPrice?.changePercentage }}%)
   </mat-card-content>
+  <mat-card-actions *ngIf="showRemoveButton">
+    <button mat-raised-button color="warn" (click)="removeFromWatchlist(symbol)">Remove</button>
+  </mat-card-actions>
 </mat-card>

@@ -22,4 +22,10 @@ export class DbService {
       null
     );
   }
+
+  removeFromUserWatchlist(symbol: string): Observable<any> {
+    return this.http.delete(
+      `${devEnv.be_base_url}user/remove-from-watchlist?ticker=${symbol}`
+    );
+  }
 }
